@@ -1,0 +1,11 @@
+FROM python:3.9-slim
+
+RUN apt-get update && apt-get install -y \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /app
+RUN git clone https://github.com/Arksine/moonraker.git .
+RUN pip install -r requirements.txt
+
+CMD ["python3", "moonraker/moonraker.py", "-c", "/home/pi/klipper_config/moonraker.conf"]

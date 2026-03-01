@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  moonraker:
+    image: your-moonraker-image:latest
+    container_name: moonraker
+    ports:
+      - "7125:7125"   # Porta padrão da API do Moonraker
+    volumes:
+      - ./config:/home/pi/klipper_config
+    restart: unless-stopped
