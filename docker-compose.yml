@@ -1,9 +1,6 @@
-version: "3.7"
-
-build: ./moonraker
 services:
   moonraker:
-    image: your-moonraker-image:latest
+    build: ./moonraker
     container_name: moonraker
     ports:
       - "7125:7125"   
