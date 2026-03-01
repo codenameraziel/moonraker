@@ -1,11 +1,24 @@
+# Dockerfile para Moonraker
 FROM python:3.9-slim
 
+# Instala dependências necessárias
 RUN apt-get update && apt-get install -y \
     git \
+    libffi-dev \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
+# Define diretório de trabalho
 WORKDIR /app
-RUN git clone https://github.com/Arksine/moonraker.git .
-RUN pip install -r requirements.txt
 
+# Clona o repositório oficial do Moonraker
+RUN git clone https://github.com/Arksine/moonraker.git .
+
+# Instala dependências Python
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Porta padrão da API
+EXPOSE 7125
+
+# Comando de inicialização
 CMD ["python3", "moonraker/moonraker.py", "-c", "/home/pi/klipper_config/moonraker.conf"]
