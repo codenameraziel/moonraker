@@ -6,7 +6,7 @@ services:
     image: your-moonraker-image:latest
     container_name: moonraker
     ports:
-      - "7125:7125"   # Porta padrão da API do Moonraker
+      - "7125:7125"   
     volumes:
       - ./config:/home/pi/klipper_config
     restart: unless-stopped
